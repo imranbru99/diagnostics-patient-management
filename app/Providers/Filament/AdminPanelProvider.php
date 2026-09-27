@@ -38,6 +38,7 @@ class AdminPanelProvider extends PanelProvider
                 'info' => Color::Sky,
             ])
             ->font('Inter')
+            ->spa()
             ->sidebarCollapsibleOnDesktop()
             ->maxContentWidth('full')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')

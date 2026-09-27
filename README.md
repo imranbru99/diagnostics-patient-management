@@ -5,15 +5,15 @@
 </p>
 
 <p align="center">
-  <strong>"AI-powered patient, sample &amp; report management for modern diagnostic centers."</strong>
+  <strong>"Clinical-grade AI diagnostic laboratory, sample chain-of-custody, and patient management platform built on Laravel 13 &amp; Filament v3/v4."</strong>
 </p>
 
 <p align="center">
-  <a href="https://github.com/imranbru99/diagnostics-patient-management/actions"><img src="https://img.shields.io/badge/Build-Passing-22c55e?style=for-the-badge&logo=githubactions&logoColor=white" alt="Build Status" /></a>
+  <a href="https://laravel.com"><img src="https://img.shields.io/badge/Laravel-13%20%7C%2012%20%7C%2011-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel 13" /></a>
   <a href="https://php.net"><img src="https://img.shields.io/badge/PHP-8.2%20%7C%208.3%20%7C%208.4-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP 8.2+" /></a>
-  <a href="https://laravel.com"><img src="https://img.shields.io/badge/Laravel-11%20%7C%2012%20%7C%2013-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel Framework" /></a>
   <a href="https://filamentphp.com"><img src="https://img.shields.io/badge/Filament-v3%20%2F%20v4-F59E0B?style=for-the-badge&logo=filament&logoColor=white" alt="Filament Admin" /></a>
   <a href="https://github.com/imranbru99/laravel-ai-hub"><img src="https://img.shields.io/badge/AI%20Hub-Integrated-8B5CF6?style=for-the-badge&logo=openai&logoColor=white" alt="AI Hub" /></a>
+  <a href="https://github.com/imranbru99/diagnostics-patient-management/actions"><img src="https://img.shields.io/badge/Build-Passing-22c55e?style=for-the-badge&logo=githubactions&logoColor=white" alt="Build Status" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License" /></a>
 </p>
 
@@ -21,53 +21,54 @@
 
 ## 📌 Executive Overview
 
-**Apex Diagnostics &amp; Patient Management** (`diagnostics-patient-management`) is a clinical-grade, enterprise diagnostic center and laboratory automation application. Built on top of **Laravel 11/12** and **Filament v3/v4**, it unites barcode-tracked phlebotomy custody, automated biochemistry/hematology reference interval flagging, patient-facing plain-language AI report summarization, biometric technician attendance, and multilingual PDF delivery into a single cohesive clinical workflow.
+**Apex Diagnostics &amp; Patient Management** (`diagnostics-patient-management`) is an enterprise-grade clinical pathology, radiology, and laboratory automation system. Engineered for **Laravel 13**, **Laravel 12/11**, and **Filament v3/v4**, it unites barcode-tracked phlebotomy custody, automated biochemistry and hematology reference interval auditing, patient-facing plain-language AI report summarization, real-time biometric technician shift management, and cryptographic tamper-proof PDF delivery into a cohesive clinical ecosystem.
 
-### Target Organizations:
-- Clinical Pathology & Molecular Diagnostic Laboratories
-- Hospital Diagnostic Wings & Satellite Specimen Collection Kiosks
-- Radiology & Medical Imaging Centers (X-Ray, Ultrasonography, CT, MRI)
-- Multi-Branch Laboratory Franchises with Central Lab Routing
+### Target Healthcare Facilities:
+- **Clinical Pathology & Molecular Diagnostic Laboratories**
+- **Hospital Diagnostic Wings & Satellite Sample Collection Hubs**
+- **Radiology & Medical Imaging Centers** (Digital X-Ray, Ultrasonography, CT, MRI)
+- **Multi-Branch Laboratory Networks** with Central Lab Accessioning & Courier Routing
 
 ---
 
 ## 🌟 Ecosystem Package Integration Map
 
-This application is deeply wired into the `imrandevbd` open-source software ecosystem:
+This application is deeply wired into the open-source software ecosystem:
 
 ```mermaid
 graph TD
-    App[diagnostics-patient-management] --> AIHub[imrandevbd/laravel-ai-hub]
+    App[diagnostics-patient-management &bull; Laravel 13] --> AIHub[imrandevbd/laravel-ai-hub]
     App --> UniPdf[imrandevbd/laravel-unicode-pdf]
     App --> UniSlug[imrandevbd/laravel-universal-slug]
     App --> Attend[imrandevbd/laravel-attendance-hub]
-    App --> RBAC[imrandevbd/adhikar / Spatie]
 
-    AIHub --> F1[AI Plain-Language Report Summarizer]
+    AIHub --> F1[AI Plain-Language Patient Summarizer]
     AIHub --> F2[Critical Value Flagging Before Sign-off]
-    AIHub --> F3[Requisition & Prescription OCR Auto-Entry]
+    AIHub --> F3[Prescription & Requisition OCR Auto-Entry]
     AIHub --> F4[Patient-Facing Scoped RAG Chat Widget]
-    AIHub --> F5[Doctor Decision Support Co-Pilot]
+    AIHub --> F5[Doctor Differential Decision Co-Pilot]
+    AIHub --> F6[AI Health Package Symptom Recommender]
 
     UniPdf --> P1[Bangla / English / Arabic Multilingual Reports]
     UniPdf --> P2[Scientific Units & Font Fallback: µ, °, ²]
-    UniPdf --> P3[QR Code Authenticity Seal]
+    UniPdf --> P3[QR Code Authenticity Seal & SHA-256 Hash]
     UniPdf --> P4[Doctor Referral Commission Statements]
 
     UniSlug --> S1[SEO Test Catalog /tests/complete-blood-count]
-    UniSlug --> S2[Unicode Patient URLs & Atomic Lock]
+    UniSlug --> S2[Unicode Patient URLs & Collision-Free Atomic Lock]
 
     Attend --> A1[ZKTeco & ADMS Biometric Terminal Sync]
     Attend --> A2[Phlebotomist & Technician Shift Roster]
 ```
 
-### 1. `imrandevbd/laravel-ai-hub` — The AI Engine
+### 1. `imrandevbd/laravel-ai-hub` — The Clinical AI Engine
 Features autonomous multi-provider failover (`Gemini ➔ OpenAI ➔ Anthropic ➔ Groq ➔ Ollama`):
-- **Plain-Language Patient Summarizer:** Converts clinical values (e.g., Hemoglobin 11.2 g/dL, Platelets 140,000) into reassuring, accessible patient-friendly summaries.
-- **Automated Out-of-Range Flagging:** Automatically scans results against age- and gender-specific biological intervals and marks `CRITICAL LOW` or `CRITICAL HIGH` alerts before pathologist sign-off.
-- **Prescription & Requisition OCR:** Reads paper requisition slips and handwritten doctor notes, returning clean JSON to auto-populate patient intake.
+- **Plain-Language Patient Summarizer:** Converts clinical values (e.g., *Hemoglobin 11.2 g/dL*, *Platelets 140,000 /µL*) into reassuring, accessible patient-friendly summaries.
+- **Automated Out-of-Range Flagging:** Scans results against age- and gender-specific biological intervals, marking `CRITICAL LOW` or `CRITICAL HIGH` alerts prior to pathologist sign-off.
+- **Prescription & Requisition OCR:** Reads paper requisition slips and handwritten doctor notes, returning structured JSON to auto-populate patient intake.
 - **Patient-Facing "Ask About Your Report" AI Chat:** A RAG-powered interactive assistant strictly scoped to the active patient's report with zero data leakage.
-- **Doctor's AI Co-Pilot:** Provides differential consideration notes and potential confirmatory recommendations for reviewing physicians (advisory only).
+- **Doctor's AI Co-Pilot:** Provides differential consideration notes and potential confirmatory recommendations for reviewing physicians.
+- **AI Health Package Recommender:** Patients type or select symptoms (*Fatigue*, *High Blood Sugar*, *Cardiac Discomfort*) to receive recommended diagnostic panels.
 - **Studio Telemetry:** Real-time tracking of token usage, latency (ms), and cost per branch.
 
 ### 2. `imrandevbd/laravel-unicode-pdf` — Reports & Invoices
@@ -83,11 +84,23 @@ Features autonomous multi-provider failover (`Gemini ➔ OpenAI ➔ Anthropic �
 ### 4. `imrandevbd/laravel-attendance-hub` — Staff & Biometric Shifts
 - Direct ADMS / ZKTeco biometric device punch synchronization.
 - Shift calculator (Morning, Evening, Night/STAT) for laboratory technologists and phlebotomists.
-- Feeds into branch performance and staff cost accounting.
+- Live bench presence tracking feeding into branch performance.
 
 ---
 
-## 🏗️ 11 Core Functional Modules
+## 🎨 Modern UI & Design System
+
+The application features an ultra-modern, clinical-grade interface:
+- **Persistent Dark/Light Mode Engine:** Dynamic theme switcher in the navigation bar with instant `localStorage` persistence and zero-flicker startup.
+- **Floating Glassmorphic Navbar:** Semi-transparent blurred header (`backdrop-blur-xl bg-white/85 dark:bg-darknavy-900/85`) with glowing brand logo, real-time STAT 24/7 hotline status, and responsive mobile navigation drawer.
+- **Clinical Color Palette:** Medical Teal (`#14b8a6`), Clinical Emerald (`#10b981`), Deep Dark Navy (`#030712`), and subtle radial ambient glow effects.
+- **Visual Range Indicator Gauges:** Every parameter in the report reader displays a horizontal color-coded indicator (`[Low | Normal | High | Critical]`) with observed needle markers.
+- **Broadcast-Grade Lounge TV Screen:** 4K/1080p lobby queue board featuring a synthesized **Web Audio API Hospital Chime**, Now Serving booth cards, and announcement marquee.
+- **Filament SPA Mode:** Instant single-page navigation enabled across all admin panels and widgets.
+
+---
+
+## 🏗️ 12 Core Clinical & Administrative Modules
 
 ### 1. Patient Master Index (MRN & Demographics)
 - Automatic Medical Record Number generation (`MRN-YYYY-XXXXX`).
@@ -96,9 +109,9 @@ Features autonomous multi-provider failover (`Gemini ➔ OpenAI ➔ Anthropic �
 - Patient document vault for past external prescriptions and imaging scans.
 
 ### 2. Test Catalog & Reference Interval Engine
-- Hierarchical category structure (Hematology, Biochemistry, Immunology, Radiology, Clinical Pathology).
+- Hierarchical category structure (Hematology, Biochemistry, Immunology, Radiology, Clinical Pathology, Molecular Genetics).
 - Multi-tier biological reference intervals configurable by gender and age (pediatric, adult, geriatric).
-- Turnaround time (TAT) targets, specimen preparation instructions, and collection tube color coding.
+- Turnaround time (TAT) targets, specimen preparation instructions, and collection tube color coding (*Lavender EDTA*, *Gold SST*, *Light Blue Citrate*, *Grey Fluoride*, *Red Plain*).
 
 ### 3. Barcode Sample Tracking & Custody Lifecycle
 - Cryptographic barcode generation (`SMP-YYYY-XXXXXX`).
@@ -119,38 +132,49 @@ Features autonomous multi-provider failover (`Gemini ➔ OpenAI ➔ Anthropic �
 
 ### 6. Waiting Lounge & TV Queue Display
 - Token generator distinguishing scheduled appointments (`A-101`) and walk-in arrivals (`W-005`).
-- Fullscreen TV display mode (`/tv-queue`) with live clock and audio chime triggers for waiting rooms.
+- Fullscreen TV display mode (`/tv-queue`) with live clock and synthesized hospital chime triggers for waiting rooms.
 
-### 7. Billing, Invoicing & Daily Cash Reconciliation
+### 7. Online Appointment Booking with AI Symptom Assistant
+- 3-step interactive booking flow: Investigation Selection, Facility Scheduling, and Patient Demographics.
+- Embedded AI Health Package Recommender matching symptoms to screening panels.
+- Instant digital phlebotomy pass with scannable QR block, barcode reference, and preparation instructions.
+
+### 8. Electronic Report Verification Portal
+- SHA-256 cryptographic verification portal (`/verify-report/{hash}`).
+- Certified electronic medical record seal, pathologist digital signature confirmation, and tamper-detection check.
+- Interactive manual hash/barcode search bar.
+
+### 9. Billing, Invoicing & Daily Cash Reconciliation
 - Itemized billing with package discounts, partial payments, and balance tracking.
 - Cash register drawer reconciliation at the close of daily front-desk shifts.
 - Insurance claim provider and policy tracking.
 
-### 8. Reagents & Consumables Inventory
+### 10. Reagents & Consumables Inventory
 - Stock quantity tracking, unit cost, lot numbers, and expiration dates.
 - Automated low-stock alert thresholds.
 - Reagent consumption tracking per investigation for accurate cost-per-test metrics.
 
-### 9. Multi-Branch Operations (Satellite ➔ Central Lab)
+### 11. Multi-Branch Operations (Satellite ➔ Central Lab)
 - Central laboratory dashboard aggregating satellite collection points.
 - Sample courier routing and accession tracking between branches.
 - Branch-level financial, staff attendance, and inventory segmentation.
 
-### 10. Filament v3/v4 Command Center
-- Clinical Teal and Emerald custom palette.
+### 12. Filament v3/v4 Command Center & AI Studio
+- Custom clinical palette and SPA mode navigation.
 - Live sample pipeline Kanban board widget.
 - Real-time AI Hub latency, cost, and failover status gauges.
 - Staff biometric shift presence widget.
-
-### 11. Responsive Patient Web Portal
-- Secure OTP or MRN sign-in.
-- Interactive report visualizer with normal-range indicator bars.
-- Integrated **"Ask About Your Report"** AI assistant.
-- Authentic QR-code verification portal (`/verify-report/{hash}`).
+- Interactive AI prescription OCR auto-entry sandbox.
 
 ---
 
 ## ⚡ Quickstart & Docker Deployment
+
+### Prerequisites
+- **PHP 8.2, 8.3, or 8.4+**
+- **Composer 2.x**
+- **Node.js 20+**
+- **Docker & Docker Compose** (Optional for containerized run)
 
 ### Method 1: Docker Compose (Recommended)
 
@@ -179,10 +203,25 @@ Features autonomous multi-provider failover (`Gemini ➔ OpenAI ➔ Anthropic �
 
 5. **Access Application:**
    - **Public Portal:** [http://localhost:8000](http://localhost:8000)
-   - **Test Catalog:** [http://localhost:8000/tests](http://localhost:8000/tests)
+   - **Test Directory:** [http://localhost:8000/tests](http://localhost:8000/tests)
+   - **Book Appointment:** [http://localhost:8000/book-appointment](http://localhost:8000/book-appointment)
    - **Lounge TV Queue Display:** [http://localhost:8000/tv-queue](http://localhost:8000/tv-queue)
+   - **Report Verification:** [http://localhost:8000/verify-report/demo](http://localhost:8000/verify-report/demo)
    - **Patient Portal:** [http://localhost:8000/portal/login](http://localhost:8000/portal/login)
    - **Filament Admin Panel:** [http://localhost:8000/admin](http://localhost:8000/admin)
+
+---
+
+### Method 2: Local PHP Installation
+
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+touch database/database.sqlite
+php artisan migrate --seed
+php artisan serve
+```
 
 ---
 
@@ -190,12 +229,34 @@ Features autonomous multi-provider failover (`Gemini ➔ OpenAI ➔ Anthropic �
 
 | Role | Email / Identifier | Password / PIN | Description |
 |---|---|---|---|
-| **Admin** | `admin@apexdiagnostics.test` | `password` | Full system administrator |
-| **Pathologist** | `nasreen@apexdiagnostics.test` | `password` | Clinical report sign-off & review |
-| **Radiologist** | `tariq@apexdiagnostics.test` | `password` | Imaging reports & findings |
-| **Technologist** | `kawsar@apexdiagnostics.test` | `password` | Sample collection & analyzers |
-| **Receptionist** | `reception@apexdiagnostics.test` | `password` | Front desk billing & queue |
-| **Patient Demo** | `MRN-2026-00001` or `+880 1712-345678` | `1234` | Patient portal with CBC report |
+| **System Admin** | `admin@apexdiagnostics.test` | `password` | Full system administrator with AI Studio |
+| **Consultant Pathologist** | `nasreen@apexdiagnostics.test` | `password` | Clinical report sign-off & AI Co-Pilot |
+| **Radiologist** | `tariq@apexdiagnostics.test` | `password` | Imaging reports & ultrasound findings |
+| **Medical Technologist** | `kawsar@apexdiagnostics.test` | `password` | Phlebotomy custody & analyzer loading |
+| **Front Desk Reception** | `reception@apexdiagnostics.test` | `password` | Billing, invoicing & token dispatch |
+| **Demo Patient 1** | `MRN-2026-00001` or `+880 1712-345678` | `1234` | Patient portal with CBC report & AI chat |
+| **Demo Patient 2** | `MRN-2026-00002` or `+880 1712-345679` | `1234` | Patient portal with Lipid Profile |
+
+---
+
+## 🌐 Application Route Index
+
+| Route | Method | Controller Action | Description |
+|---|---|---|---|
+| `/` | `GET` | `PublicController@index` | Modern Homepage with test search & 4-stage pipeline |
+| `/tests` | `GET` | `PublicController@testCatalog` | Searchable Test Catalog with department filters |
+| `/tests/{slug}` | `GET` | `PublicController@testDetail` | Investigation Details, parameters & tube spec |
+| `/book-appointment` | `GET/POST` | `PublicController@bookAppointmentForm` | 3-step booking with AI package recommender |
+| `/book-appointment/confirmed/{number}` | `GET` | `PublicController@bookingConfirmation` | Electronic phlebotomy pass & token QR slip |
+| `/tv-queue` | `GET` | `PublicController@tvQueue` | Broadcast TV display screen with audio chime |
+| `/verify-report/{hash}` | `GET` | `PublicController@verifyReport` | SHA-256 cryptographic verification portal |
+| `/api/recommend-packages` | `POST` | `PublicController@recommendPackagesApi` | AI symptom-based package recommendation API |
+| `/portal/login` | `GET/POST` | `PatientPortalController@login` | Patient portal authentication (MRN / OTP) |
+| `/portal/dashboard` | `GET` | `PatientPortalController@dashboard` | Patient command center & report history |
+| `/portal/chat` | `POST` | `PatientPortalController@chatAboutReport` | Scoped RAG AI assistant for patient report |
+| `/report/{slug}` | `GET` | `PatientPortalController@viewReport` | Interactive clinical report viewer with AI |
+| `/report/{slug}/pdf` | `GET` | `PatientPortalController@downloadPdf` | Official encrypted PDF report download |
+| `/admin` | `GET` | Filament Panel | Lab Staff, Pathologists & AI Studio Panel |
 
 ---
 
@@ -208,20 +269,26 @@ php artisan test
 ```
 
 The test suite validates:
-- MRN and universal slug generation.
+- MRN and universal slug generation with atomic lock.
 - Barcode chain-of-custody state machine transitions.
 - Biological reference interval abnormal and critical flagging.
-- Plain-language AI summarization pipeline.
+- Plain-language AI summarization and symptom-based package recommendations.
 - SHA-256 cryptographic report authenticity checks.
+- Scoped RAG assistant bounds against data leakage.
 
 ---
 
 ## 📄 License
 
-The core of **Apex Diagnostics &amp; Patient Management** is open-sourced software licensed under the **[MIT License](LICENSE)**.
+The core of **Apex Diagnostics &amp; Patient Management** is open-source software licensed under the **[MIT License](LICENSE)**.
 
 ---
+
+## 📬 Contact & About
+
+Apex Diagnostics is an AI-powered clinical laboratory & patient management platform built with Laravel 11/12 & Filament v3. Features barcode phlebotomy chain-of-custody, plain-language AI report summarization, automated critical interval alerts, interactive patient portal with scoped RAG chat, live lounge TV queue calling, biometric shift attendance sync, and multilingual PDF delivery.
 
 <p align="center">
   Crafted with care by <a href="https://github.com/imranbru99"><strong>Imran Dev BD</strong></a>
 </p>
+
