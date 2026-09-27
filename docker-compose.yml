@@ -1,0 +1,92 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: diagnostics_app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - diagnostics_network
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  web:
+    image: nginx:alpine
+    container_name: diagnostics_web
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - diagnostics_network
+    depends_on:
+      - app
+
+  db:
+    image: mysql:8.0
+    container_name: diagnostics_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: diagnostics_db
+      MYSQL_USER: diagnostics_user
+      MYSQL_PASSWORD: diagnostics_password
+      MYSQL_ROOT_PASSWORD: root_password
+    command: >
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+    volumes:
+      - diagnostics_db_data:/var/lib/mysql
+    networks:
+      - diagnostics_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_password"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:alpine
+    container_name: diagnostics_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - diagnostics_redis_data:/data
+    networks:
+      - diagnostics_network
+
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: diagnostics_queue
+    restart: unless-stopped
+    working_dir: /var/www/html
+    command: php artisan queue:work redis --sleep=3 --tries=3 --timeout=90
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - diagnostics_network
+    depends_on:
+      - app
+      - redis
+      - db
+
+networks:
+  diagnostics_network:
+    driver: bridge
+
+volumes:
+  diagnostics_db_data:
+  diagnostics_redis_data:
